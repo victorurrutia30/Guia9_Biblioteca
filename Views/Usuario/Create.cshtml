@@ -1,49 +1,57 @@
 ﻿@model GestionBiblioteca.Models.Usuario
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Agregar Usuario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="card shadow-sm mt-4">
+    <div class="card-header bg-success text-white">
+        <h4 class="mb-0"><i class="fas fa-user-plus me-2"></i>Agregar Usuario</h4>
+    </div>
 
-<h4 style="color:cornflowerblue">Agregar Usuario</h4>
-
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="card-body">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CodUsuario" class="control-label"></label>
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="CodUsuario" class="form-label"></label>
                 <input asp-for="CodUsuario" class="form-control" />
                 <span asp-validation-for="CodUsuario" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="Nombre" class="form-label"></label>
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="Username" class="form-label"></label>
                 <input asp-for="Username" class="form-control" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" type="password"/>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" type="password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="FechaCreacion" class="control-label"></label>
-                <input asp-for="FechaCreacion" class="form-control" type="date"/>
+
+            <div class="mb-3">
+                <label asp-for="FechaCreacion" class="form-label"></label>
+                <input asp-for="FechaCreacion" class="form-control" type="date" />
                 <span asp-validation-for="FechaCreacion" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Agregar" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-warning">Volver al listado</a>
-            </div>
 
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i>Agregar
+                </button>
+                <a asp-action="Index" class="btn btn-warning">
+                    <i class="fas fa-arrow-left me-1"></i>Volver al listado
+                </a>
+            </div>
         </form>
     </div>
 </div>

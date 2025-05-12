@@ -1,59 +1,49 @@
 ﻿@model GestionBiblioteca.Models.Libros
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles del Libro";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<div class="card shadow-sm mt-4">
+    <div class="card-header bg-info text-white">
+        <h4 class="mb-0"><i class="fas fa-book-open me-2"></i>Detalles del Libro</h4>
+    </div>
 
-<div>
-    <h4>Libros</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CodLibro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CodLibro)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Editorial)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Editorial)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AnioPublicacion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AnioPublicacion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ISBN)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ISBN)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaIngreso)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaIngreso)
-        </dd>
-        <dt class="col-sm-2">Autores</dt>
-        <dd class="col-sm-10">
-            @string.Join(", ", Model.NombresAutores)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CodLibro }) |
-    <a asp-action="Index">Back to List</a>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.CodLibro)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.CodLibro)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Titulo)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Titulo)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Editorial)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Editorial)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.AnioPublicacion)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.AnioPublicacion)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ISBN)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.ISBN)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.FechaIngreso)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.FechaIngreso)</dd>
+
+            <dt class="col-sm-3">Autores</dt>
+            <dd class="col-sm-9">
+                <div class="d-flex flex-wrap gap-1">
+                    @foreach (var autor in Model.NombresAutores)
+                    {
+                        <span class="badge bg-secondary fs-6">@autor</span>
+                    }
+                </div>
+            </dd>
+        </dl>
+    </div>
+
+    <div class="card-footer d-flex justify-content-between">
+        @Html.ActionLink("Editar", "Edit", new { id = Model.CodLibro }, new { @class = "btn btn-primary btn-sm" })
+        <a asp-action="Index" class="btn btn-secondary btn-sm">Volver al listado</a>
+    </div>
 </div>

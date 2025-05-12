@@ -90,9 +90,11 @@ namespace GestionBiblioteca.Controllers
                 mantenimiento.Borrar(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.Error = ex.Message;
+                var autor = new MantenimientoAutor().Consultar(id);
+                return View(autor);
             }
         }
 

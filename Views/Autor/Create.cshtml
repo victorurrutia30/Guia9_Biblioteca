@@ -1,40 +1,50 @@
 ﻿@model GestionBiblioteca.Models.Autor
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Agregar Autor";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
-<h4 style="color:cornflowerblue">Agregar Autor</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="card shadow-sm mt-4">
+    <div class="card-header bg-success text-white">
+        <h4 class="mb-0"><i class="fas fa-user-plus me-2"></i>Agregar Autor</h4>
+    </div>
+
+    <div class="card-body">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CodAutor" class="control-label"></label>
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="CodAutor" class="form-label"></label>
                 <input asp-for="CodAutor" class="form-control" />
                 <span asp-validation-for="CodAutor" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="NombreAutor" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="NombreAutor" class="form-label"></label>
                 <input asp-for="NombreAutor" class="form-control" />
                 <span asp-validation-for="NombreAutor" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Nacionalidad" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="Nacionalidad" class="form-label"></label>
                 <input asp-for="Nacionalidad" class="form-control" />
                 <span asp-validation-for="Nacionalidad" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="FechaNacimiento" class="control-label"></label>
-                <input asp-for="FechaNacimiento" class="form-control" type="date"/>
+
+            <div class="mb-3">
+                <label asp-for="FechaNacimiento" class="form-label"></label>
+                <input asp-for="FechaNacimiento" class="form-control" type="date" />
                 <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Agregar" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-warning">Volver al listado</a>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i>Agregar
+                </button>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>Volver al listado
+                </a>
             </div>
         </form>
     </div>

@@ -1,52 +1,51 @@
 ﻿@model GestionBiblioteca.Models.Usuario
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar Usuario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Delete</h1>
+<div class="card shadow-sm mt-4">
+    <div class="card-header bg-danger text-white">
+        <h4 class="mb-0"><i class="fas fa-user-times me-2"></i>Eliminar Usuario</h4>
+    </div>
 
-<h3>¿Está seguro que desea borrar este registro?</h3>
-<div>
-    <h4 style="color:coral">Eliminar Usuario</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CodUsuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CodUsuario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaCreacion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaCreacion)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-        <a asp-action="Index" class="btn btn-warning">Volver al listado</a>
-    </form>
+    <div class="card-body">
+        <div class="alert alert-warning">
+            <strong>¿Está seguro que desea borrar este registro?</strong>
+        </div>
 
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+
+        <dl class="row mb-0">
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.CodUsuario)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.CodUsuario)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Nombre)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Nombre)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Username)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Username)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Password)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Password)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.FechaCreacion)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.FechaCreacion)</dd>
+        </dl>
+    </div>
+
+    <div class="card-footer d-flex justify-content-between">
+        <form asp-action="Delete" class="mb-0">
+            <button type="submit" class="btn btn-danger">
+                <i class="fas fa-trash-alt me-1"></i>Eliminar
+            </button>
+        </form>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-1"></i>Volver al listado
+        </a>
+    </div>
 </div>

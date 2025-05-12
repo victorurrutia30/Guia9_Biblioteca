@@ -1,66 +1,89 @@
 ﻿@model GestionBiblioteca.Models.Libros
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Agregar Libro";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="card shadow-sm mt-4">
+    <div class="card-header bg-success text-white">
+        <h4 class="mb-0"><i class="fas fa-plus me-2"></i>Agregar Nuevo Libro</h4>
+    </div>
 
-<h4>Libros</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="card-body">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CodLibro" class="control-label"></label>
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="CodLibro" class="form-label"></label>
                 <input asp-for="CodLibro" class="form-control" />
                 <span asp-validation-for="CodLibro" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Titulo" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="Titulo" class="form-label"></label>
                 <input asp-for="Titulo" class="form-control" />
                 <span asp-validation-for="Titulo" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Editorial" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="Editorial" class="form-label"></label>
                 <input asp-for="Editorial" class="form-control" />
                 <span asp-validation-for="Editorial" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AnioPublicacion" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="AnioPublicacion" class="form-label"></label>
                 <input asp-for="AnioPublicacion" class="form-control" />
                 <span asp-validation-for="AnioPublicacion" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ISBN" class="control-label"></label>
+
+            <div class="mb-3">
+                <label asp-for="ISBN" class="form-label"></label>
                 <input asp-for="ISBN" class="form-control" />
                 <span asp-validation-for="ISBN" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="FechaIngreso" class="control-label"></label>
-                <input asp-for="FechaIngreso" class="form-control" />
+
+            <div class="mb-3">
+                <label asp-for="FechaIngreso" class="form-label"></label>
+                <input asp-for="FechaIngreso" class="form-control" type="date" />
                 <span asp-validation-for="FechaIngreso" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label>Autores</label>
-                <select name="CodAutores" multiple class="form-control">
-                    @foreach (var autor in ViewBag.Autores)
-                    {
-                        <option value="@autor.CodAutor">@autor.NombreAutor (@autor.Nacionalidad)</option>
-                    }
-                </select>
-                <small class="form-text text-muted">Mantén presionada Ctrl (o Cmd en Mac) para seleccionar varios autores.</small>
+
+            <div class="mb-3">
+                <label class="form-label">Autores</label>
+                <div class="border rounded p-3" style="max-height: 180px; overflow-y: auto;">
+                    <div class="row">
+                        @foreach (var autor in (List<GestionBiblioteca.Models.Autor>)ViewBag.Autores)
+                        {
+                            <div class="col-md-6 mb-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="CodAutores"
+                                           value="@autor.CodAutor" id="autor_@autor.CodAutor" />
+                                    <label class="form-check-label" for="autor_@autor.CodAutor">
+                                        @autor.NombreAutor (@autor.Nacionalidad)
+                                    </label>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i>Guardar
+                </button>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>Volver al listado
+                </a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

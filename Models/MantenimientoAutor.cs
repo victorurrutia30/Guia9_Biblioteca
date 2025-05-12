@@ -88,8 +88,25 @@ namespace GestionBiblioteca.Models
             return i;
         }
 
+        public bool TieneLibrosAsociados(string codAutor)
+        {
+            Conexion conex = new Conexion();
+            conexion = new SqlConnection(conex.getCadConexion());
+            conexion.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM LibroAutor WHERE CodAutor = @cod", conexion);
+            cmd.Parameters.AddWithValue("@cod", codAutor);
+
+            int cantidad = (int)cmd.ExecuteScalar();
+            conexion.Close();
+
+            return cantidad > 0;
+        }
         public int Borrar(string cod)
         {
+            if (TieneLibrosAsociados(cod))
+                throw new Exception("Este autor tiene libros asociados y no puede ser eliminado.");
+
             Conexion conex = new Conexion();
             conexion = new SqlConnection(conex.getCadConexion());
             conexion.Open();
@@ -101,5 +118,8 @@ namespace GestionBiblioteca.Models
             conexion.Close();
             return i;
         }
+
+        
+
     }
 }
