@@ -1,0 +1,20 @@
+# Archivos de configuración de Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Salida de compilación
+bin/
+obj/
+*.exe
+*.dll
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Archivos de publicación
+wwwroot/lib/
+publish/
